@@ -1,0 +1,57 @@
+<div class="container">
+    <div class="card border-light mb-3">
+        <div class="card-header">
+            <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                {{#each breadcrumb}}
+                <li class="breadcrumb-item active" aria-current="page"><a href="{{path}}" class="text-decoration-none fs-6 fw-bold">{{name}}</a></li>
+                {{/each}}
+            </ol>
+            </nav>
+        </div>
+            <div class="card-body">
+                <table class="table table-borderless">
+                    <thead>
+                        <tr>
+                        <th scope="col" >Nombre</th>
+                        <th scope="col" class="table-light">Fecha modificación</th>
+                        <th scope="col" >Tipo</th>
+                        <th scope="col" class="table-light">Tamaño</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each files}}
+                        <tr>
+                            <td class="table-light">
+                                <i class="fas {{atributoFile extension "icon"}} fa-sm" style="color:{{atributoFile extension "color"}}"></i>
+                                <input type="hidden" class="path" value="{{path}}">
+                                <input type="hidden" class="name" value="{{name}}">
+                                <input type="hidden" class="type" value="{{type}}">  
+                                <a href="{{pathFile path type}}" class="lnk_file" target="{{target type}}"  >{{name}}</a> 
+                            </td>
+                            <td >{{fechaFile mtime}}</td>
+                            <td class="table-light">{{atributoFile extension "tipo"}}</td>
+                            <td >{{sizeFile size}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody> 
+                </table>
+                
+            </div>
+    </div>
+</div>
+
+<script>
+     $(document).ready(function () {
+
+         $("table").on('click','.lnk_flie', function (){
+             let row = $(this).closest("tr");
+             let path = row.find('.path').val();
+             let name = row.find('.name').val();
+             let type = row.find('.type').val();
+
+             //console.log(path,name,type);
+             
+         });
+     });
+</script>

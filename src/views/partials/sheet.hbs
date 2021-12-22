@@ -1,0 +1,10 @@
+{{#each items}} {{! Each item is an "li" }}
+    <li>
+        <a href="#">{{name}}</a> 
+        {{#if items}} {{! Within the context of the current item }}
+        <ul>
+        {{> sheet}} {{! Recursively render the partial }}
+        </ul>
+        {{/if}}
+    </li>
+{{/each}}
